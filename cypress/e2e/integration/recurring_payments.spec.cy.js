@@ -66,8 +66,6 @@ describe('Store Payment Data as Stand-alone', () => {
     });
   });
 
-
-
   it('should perform an initial recurring payment', () => {
     cy.request({
       method: 'POST',
