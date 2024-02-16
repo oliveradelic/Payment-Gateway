@@ -40,7 +40,7 @@ describe('Refund a Payment', () => {
       // refund the previous payment
       cy.request({
         method: 'POST',
-        url: `https://eu-test.oppwa.com/v1/payments/${paymentId}`, 
+        url: `${baseUrl}/v1/payments/${paymentId}`, 
         headers: {
             'Authorization': `Bearer ${accessToken}`
         },

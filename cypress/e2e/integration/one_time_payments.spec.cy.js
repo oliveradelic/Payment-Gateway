@@ -23,7 +23,6 @@ describe('Payment Process', () => {
         }).then((response) => {
             expect(response.status).to.eq(200);
             expect(response.body.id).to.exist;
-
             // Store checkoutID in the variable
             checkoutId = response.body.id;
         });
@@ -59,7 +58,6 @@ describe('Payment Process', () => {
             expect(response.body.result.code).to.eq('000.100.110');
             expect(response.body.result.description).to.eq("Request successfully processed in 'Merchant in Integrator Test Mode'");
             expect(response.body.id).to.exist;
-
             // Store payment ID in the variable
             paymentId = response.body.id;
         });
@@ -67,7 +65,7 @@ describe('Payment Process', () => {
 
     it('waits for payment processing', () => {
         // Wait for duration to allow payment processing
-        cy.wait(1000); 
+        cy.wait(1000);
     });
 
 
@@ -76,14 +74,13 @@ describe('Payment Process', () => {
         expect(paymentId).to.exist;
         // Ensure checkoutId is properly set
         expect(checkoutId).to.exist;
-        
+
         cy.request({
             method: 'GET',
             url: `${baseUrl}/v1/checkouts/${checkoutId}`,
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
-
         }).then((response) => {
             expect(response.status).to.eq(200);
             expect(response.body.result.code).to.eq('000.200.103');
